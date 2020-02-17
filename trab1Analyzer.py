@@ -11,8 +11,8 @@ txt = "00000        0000000 99999999 0000000000"
 x=re.search("^[0-9]*", txt)
 print(x.group())
 '''
-strcasoteste=("""public class Puppy { 
-  
+strcasoteste=("""public class Puppy {
+
     int puppyAge;
 
     public Puppy(String name) {
@@ -41,7 +41,7 @@ strcasoteste=("""public class Puppy {
 
 '''Estratégia do analisador
 
-    Ler ids, numeros inteiros e flutuantes, 
+    Ler ids, numeros inteiros e flutuantes,
     strings(""), separadores e operadores
 
     Definir as keywords após isso
@@ -50,9 +50,9 @@ strcasoteste=("""public class Puppy {
 #b=str.replace(' ','')
 #print(b)
 numerodecimal = "0|[1-9][0-9]*"
-sep = "\{\}\[\]\(\)\.;,...@::"
-op = "[=][>][<][!][~][\?][:][->][==][>=][<=][!=][&&][||][\+\+][--][\+][-][\*][/][&][|][^][%][<<][>>][>>>][+=][-=][\*=][/=][&=][|=][^=][%=][<<=][>>=][>>>=]"
-
+sep = "[\{]|[\}]|[\[]|[\]]|[\(]|[\)]|[\.]|[;]|[,]|[@]|[::]"
+op = "[=]|[>]|[<]|[!]|[~]|[\?]|[:]|[->]|[==]|[>=]|[<=]|[!=]|[&&]|[||]|[\+\+]|[--]|[\+]|[-]|[\*]|[/]|[&]|[|]|[\^]|[%]|[<<]|[>>]|[>>>]|[\+=]|[-=]|[\*=]|[/=]|[&=]|[|=]|[\^=]|[%=]|[<<=]|[>>=]|[>>>=]"
+#op2="[>]"
 '''teste = RegexpTokenizer(r"[_a-zA-Z][_a-zA-Z\d]*"
                         rf"|0|[1-9]\d*|[(-)]|[[{numerodecimal}[[.][\d]*]"
                         r"|[[.][\d]+]][[e|E][+|-]0|[1-9][\d]*]]"
@@ -66,7 +66,7 @@ r"[_a-zA-Z][_a-zA-Z\d]*"
 rf"|{numerodecimal}\.[0-9]+[eE]?[fFdD]?"
 r"|\.?[\+-]?[0-9]+[eE]?[fFdD]?"
 rf"|{numerodecimal}"
-r"|\".\""
+r'|["].*?["]'
 rf"|{sep}"
 rf"|{op}")
 
@@ -74,9 +74,9 @@ rf"|{op}")
 #teste = RegexpTokenizer("")
 #teste = RegexpTokenizer("\w+|\$[\d\.]+|\S+")
 a=teste.tokenize(str)
-b=teste.tokenize(strcasoteste) 
-print(a)
-print(len(a))
+b=teste.tokenize(strcasoteste)
+#print(a)
+#print(len(a))
 
 print(b)
 print(len(b))
