@@ -73,13 +73,14 @@ rf"|{op}")
 
 #teste = RegexpTokenizer("")
 #teste = RegexpTokenizer("\w+|\$[\d\.]+|\S+")
-a=teste.tokenize(str)
-b=teste.tokenize(strcasoteste)
+tk=teste.tokenize(str)
+tk=teste.tokenize(strcasoteste)
 #print(a)
 #print(len(a))
 
-print(b)
-print(len(b))
+for p in tk:
+    print(p)
+print(len(tk))
 
 '''
 if (x):
