@@ -4,14 +4,7 @@ import re
 from nltk.tokenize import TweetTokenizer
 from nltk.tokenize import RegexpTokenizer
 
-#Check if the string starts with "The" and ends with "Spain":
-'''
-txt = "00000        0000000 99999999 0000000000"
-#x = re.search("^The.*Spain$", 'rain')
-x=re.search("^[0-9]*", txt)
-print(x.group())
-'''
-strcasoteste=("""public class Puppy {
+strcasoteste1=("""public class Puppy {
 
     int puppyAge;
 
@@ -39,27 +32,23 @@ strcasoteste=("""public class Puppy {
     }
 }""")
 
-'''Estratégia do analisador
+str=('''(000 1111 9999 12.34 29.09 0.0 .15 3.14151643 1F
+    1D 1.0E1 1E -1E 1.09e10f __aaaa; "asad" gg ''')
 
-    Ler ids, numeros inteiros e flutuantes,
+
+'''#Estratégia do analisador#
+
+    Regex para ids, numeros flutuantes e inteiros,
     strings(""), separadores e operadores
 
     Definir as keywords após isso
 '''
 
-#b=str.replace(' ','')
-#print(b)
 numerodecimal = "0|[1-9][0-9]*"
 sep = "[\{]|[\}]|[\[]|[\]]|[\(]|[\)]|[\.]|[;]|[,]|[@]|[::]"
-op = "[=]|[>]|[<]|[!]|[~]|[\?]|[:]|[->]|[==]|[>=]|[<=]|[!=]|[&&]|[||]|[\+\+]|[--]|[\+]|[-]|[\*]|[/]|[&]|[|]|[\^]|[%]|[<<]|[>>]|[>>>]|[\+=]|[-=]|[\*=]|[/=]|[&=]|[|=]|[\^=]|[%=]|[<<=]|[>>=]|[>>>=]"
-#op2="[>]"
-'''teste = RegexpTokenizer(r"[_a-zA-Z][_a-zA-Z\d]*"
-                        rf"|0|[1-9]\d*|[(-)]|[[{numerodecimal}[[.][\d]*]"
-                        r"|[[.][\d]+]][[e|E][+|-]0|[1-9][\d]*]]"
-                        r"|[[0|[1-9][\d]*][[e|E][+|-]][0|[1-9][\d]*]")'''
+op = "[=]|[>]|[<]|[!]|[~]|[\?]|[:]|[->]|[==]|[>=]|[<=]|[!=]|[&&]|[||]|[\+\+]|[--]"
+"|[\+]|[-]|[\*]|[/]|[&]|[|]|[\^]|[%]|[<<]|[>>]|[>>>]|[\+=]|[-=]|[\*=]|[/=]|[&=]|[|=]|[\^=]|[%=]|[<<=]|[>>=]|[>>>=]"
 
-str=('''(000 1111 9999 12.34 29.09 0.0 .15 3.14151643 1F
-    1D 1.0E1 1E -1E 1.09e10f __aaaa; "asad" gg ''')
 
 teste = RegexpTokenizer(
 r"[_a-zA-Z][_a-zA-Z\d]*"
@@ -71,20 +60,33 @@ rf"|{sep}"
 rf"|{op}")
 
 
-#teste = RegexpTokenizer("")
-#teste = RegexpTokenizer("\w+|\$[\d\.]+|\S+")
 tk=teste.tokenize(str)
-tk=teste.tokenize(strcasoteste)
-#print(a)
-#print(len(a))
+tk=teste.tokenize(strcasoteste1)
 
-for p in tk:
-    print(p)
-print(len(tk))
+reservedKeywords = ["abstract", "continue", "for", "new", "switch",
+"assert", "default", "if", "package", "synchronized",
+"boolean", "do", "goto", "private", "this",
+"break", "double", "implements", "protected", "throw",
+"byte", "else", "import", "public", "throws",
+"case", "enum", "instanceof", "return", "transient",
+"catch", "extends", "int", "short", "try",
+"char", "final", "interface", "static", "void",
+"class", "finally", "long", "strictfp", "volatile",
+"const", "float", "native", "super", "while", "_"]
 
-'''
-if (x):
-  print("YES! We have a match!")
-else:
-  print("No match")
-'''
+caracfloat = ['.', 'e', 'E', 'f', 'F', 'd', 'D']
+
+for tok in tk:
+    primeiro = tok[0]
+    if primeiro == chr(34):
+        print ("STRING " + tok)
+    elif tok in reservedKeywords:
+        print (tok)
+    elif (primeiro >= 'a' and primeiro <= 'z') or (primeiro >= 'A' and primeiro <= 'Z') or primeiro == '_':
+        print ("ID " + tok)
+    elif (primeiro >= '0' and primeiro <= '9') and tok not in caracfloat:
+        print ("NUM_DECIM " + tok)
+    elif tok in caracfloat and len(tok) >= 2:
+        print ("FLOAT_DECIM " + tok)
+    else:
+        print (tok) 

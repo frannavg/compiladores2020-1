@@ -60,7 +60,7 @@ ID puppyAge
 }
 public
 static
-void 
+void
 ID main
 (
 ID String
