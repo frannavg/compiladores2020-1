@@ -5,14 +5,11 @@ from nltk.tokenize import TweetTokenizer
 from nltk.tokenize import RegexpTokenizer
 import sys
 
-if len(sys.argv) != 2: # aqui fazes a verificacao sobre quantos args queres receber, o nome do programa conta como 1
-    print('argumentos insuficientes')
-    sys.exit()
-
-nome_do_arquivo=str(sys.argv[1])
-arquivo=open(nome_do_arquivo,'r')
-strcasoteste1=arquivo.read()
-arquivo.close()
+strcasoteste1=""
+for line in sys.stdin:
+    if 'Exit' == strcasoteste1.rstrip():
+        break
+    strcasoteste1=strcasoteste1+line
 
 
 numerodecimal = "0|[1-9][0-9]*"
