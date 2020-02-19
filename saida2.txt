@@ -1,0 +1,108 @@
+public
+class
+ID Puppy
+{
+int
+ID puppyAge
+;
+public
+ID Puppy
+(
+ID String
+ID name
+)
+{
+ID System
+.
+ID out
+.
+ID println
+(
+STRING "Name chosen is :"
++
+ID name
+)
+;
+}
+public
+void
+ID setAge
+(
+int
+ID age
+)
+{
+ID puppyAge
+=
+ID age
+;
+}
+public
+int
+ID getAge
+(
+)
+{
+ID System
+.
+ID out
+.
+ID println
+(
+STRING "Puppy's age is :"
++
+ID puppyAge
+)
+;
+return
+ID puppyAge
+;
+}
+public
+static
+void
+ID main
+(
+ID String
+[
+]
+ID args
+)
+{
+ID Puppy
+ID myPuppy
+=
+new
+ID Puppy
+(
+STRING "tommy"
+)
+;
+ID myPuppy
+.
+ID setAge
+(
+NUM_DECIM 2
+)
+;
+ID myPuppy
+.
+ID getAge
+(
+)
+;
+ID System
+.
+ID out
+.
+ID println
+(
+STRING "Variable Value :"
++
+ID myPuppy
+.
+ID puppyAge
+)
+;
+}
+}

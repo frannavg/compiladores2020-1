@@ -1,52 +1,23 @@
 #Código lab1 Compiladores // Breno Peixoto e Francisco Navarrete
-
+#
 import re
 from nltk.tokenize import TweetTokenizer
 from nltk.tokenize import RegexpTokenizer
+import sys
 
-strcasoteste1=("""public class Puppy {
+if len(sys.argv) != 2: # aqui fazes a verificacao sobre quantos args queres receber, o nome do programa conta como 1
+    print('argumentos insuficientes')
+    sys.exit()
 
-    int puppyAge;
+nome_do_arquivo=str(sys.argv[1])
+arquivo=open(nome_do_arquivo,'r')
+strcasoteste1=arquivo.read()
+arquivo.close()
 
-    public Puppy(String name) {
-        System.out.println("Name chosen is :" + name );
-    }
-
-    public void setAge( int age ) {
-        puppyAge = age;
-    }
-
-    public int getAge( ) {
-        System.out.println("Puppy's age is :" + puppyAge );
-        return puppyAge;
-    }
-
-    public static void main(String []args) {
-        Puppy myPuppy = new Puppy( "tommy" );
-
-        myPuppy.setAge( 2 );
-
-        myPuppy.getAge( );
-
-        System.out.println("Variable Value :" + myPuppy.puppyAge );
-    }
-}""")
-
-str=('''(000 1111 9999 12.34 29.09 0.0 .15 3.14151643 1F
-    1D 1.0E1 1E -1E 1.09e10f __aaaa; "asad" gg ''')
-
-
-'''#Estratégia do analisador#
-
-    Regex para ids, numeros flutuantes e inteiros,
-    strings(""), separadores e operadores
-
-    Definir as keywords após isso
-'''
 
 numerodecimal = "0|[1-9][0-9]*"
 sep = "[\{]|[\}]|[\[]|[\]]|[\(]|[\)]|[\.]|[;]|[,]|[@]|[::]"
-op = "[=]|[>]|[<]|[!]|[~]|[\?]|[:]|[->]|[==]|[>=]|[<=]|[!=]|[&&]|[||]|[\+\+]|[--]"
+op = "[>]|[<]|[!]|[~]|[\?]|[:]|[->]|[==]|[=]|[>=]|[<=]|[!=]|[&&]|[||]|[\+\+]|[--]"
 "|[\+]|[-]|[\*]|[/]|[&]|[|]|[\^]|[%]|[<<]|[>>]|[>>>]|[\+=]|[-=]|[\*=]|[/=]|[&=]|[|=]|[\^=]|[%=]|[<<=]|[>>=]|[>>>=]"
 
 
@@ -60,7 +31,6 @@ rf"|{sep}"
 rf"|{op}")
 
 
-tk=teste.tokenize(str)
 tk=teste.tokenize(strcasoteste1)
 
 reservedKeywords = ["abstract", "continue", "for", "new", "switch",
@@ -89,4 +59,4 @@ for tok in tk:
     elif tok in caracfloat and len(tok) >= 2:
         print ("FLOAT_DECIM " + tok)
     else:
-        print (tok) 
+        print (tok)
