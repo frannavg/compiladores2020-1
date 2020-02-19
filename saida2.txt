@@ -5,6 +5,23 @@ ID Puppy
 int
 ID puppyAge
 ;
+if
+(
+NUM_DECIM 1
+>
+=
+NUM_DECIM 2
+)
+(
+ID a
+==
+ID b
+)
+&&
+ID a
+>
+>
+ID b
 public
 ID Puppy
 (
