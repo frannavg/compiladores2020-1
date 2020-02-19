@@ -8,19 +8,19 @@ ID puppyAge
 if
 (
 NUM_DECIM 1
->
-=
+->
+>=
+<=
 NUM_DECIM 2
 )
-(
 ID a
-==
+>>
 ID b
-)
-&&
+ID b
+>>>
+ID c
 ID a
->
->
+*=
 ID b
 public
 ID Puppy
@@ -50,7 +50,6 @@ ID age
 )
 {
 ID puppyAge
-=
 ID age
 ;
 }
@@ -88,7 +87,6 @@ ID args
 {
 ID Puppy
 ID myPuppy
-=
 new
 ID Puppy
 (
