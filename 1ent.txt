@@ -1,14 +1,8 @@
 public class Puppy {
-
     int puppyAge;
-    if(1-> >= = <=2)
 
-    a>>b
-    b>>>c
-    a*=b
     public Puppy(String name) {
         System.out.println("Name chosen is :" + name );
-
     }
 
     public void setAge( int age ) {

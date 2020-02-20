@@ -1,5 +1,5 @@
-#Código lab1 Compiladores // Breno Peixoto e Francisco Navarrete
-#
+#Código lab1 Compiladores // Breno Peixoto e Francisco Navarrete #
+
 import re
 from nltk.tokenize import TweetTokenizer
 from nltk.tokenize import RegexpTokenizer
@@ -9,19 +9,19 @@ strcasoteste1=""
 for line in sys.stdin:
     if 'Exit' == strcasoteste1.rstrip():
         break
-    strcasoteste1=strcasoteste1+line
+    strcasoteste1+=line
 
 
 numerodecimal = "0|[1-9][0-9]*"
 sep = "[\{]|[\}]|[\[]|[\]]|[\(]|[\)]|[\.]|[;]|[,]|[@]|[::]"
-op = "[<]|[!]|[~]|[\?]|[:]|[->]|==|[=][>]|&&|\|\||\+\+|[\+]|[-]|[\*]|[/]|[&]|[|]|[\^]|[%]"
+op = "[<]|[!]|[~]|[\?]|[:]|[->]|==|[=]|[>]|&&|\|\||\+\+|[\+]|[-]|[\*]|[/]|[&]|[|]|[\^]|[%]"
 
 op_complexo=">>>|\+=|-=|\*=|/=|&=|\|=|\^=|%=|<<=|>>=|>>>=|>=|->|<=|!=|\-\-|<<|>>"
 
 teste = RegexpTokenizer(
 r"[_a-zA-Z][_a-zA-Z\d]*"
-rf"|{numerodecimal}\.[0-9]+[eE]?[fFdD]?"
-r"|\.?[\+-]?[0-9]+[eE]?[fFdD]?"
+rf"|[0-9]?\.[0-9]+[eE]?[\+-]?{numerodecimal}[fFdD]?"
+rf"|\.?[0-9]+[eE]?[\+-]?{numerodecimal}[fFdD]?"
 rf"|{numerodecimal}"
 r'|["].*?["]'
 rf"|{op_complexo}"
@@ -44,6 +44,8 @@ reservedKeywords = ["abstract", "continue", "for", "new", "switch",
 
 caracfloat = ['.', 'e', 'E', 'f', 'F', 'd', 'D']
 
+#print (tk)
+
 for tok in tk:
     primeiro = tok[0]
     if primeiro == chr(34):
@@ -52,9 +54,11 @@ for tok in tk:
         print (tok)
     elif (primeiro >= 'a' and primeiro <= 'z') or (primeiro >= 'A' and primeiro <= 'Z') or primeiro == '_':
         print ("ID " + tok)
-    elif (primeiro >= '0' and primeiro <= '9') and tok not in caracfloat:
-        print ("NUM_DECIM " + tok)
     elif tok in caracfloat and len(tok) >= 2:
         print ("FLOAT_DECIM " + tok)
+    elif (primeiro >= '0' and primeiro <= '9') and tok not in caracfloat:
+        print ("NUM_DECIM " + tok)
     else:
         print (tok)
+
+print (len(tk))

@@ -1,0 +1,68 @@
+public
+class
+ID Puppy
+{
+public
+static
+void
+ID main
+(
+ID String
+[
+]
+ID args
+)
+{
+double
+ID X
+=
+NUM_DECIM 23.456E
+-789D
+;
+double
+ID Y
+=
+NUM_DECIM 23.456E
+-70
+;
+double
+ID Z
+=
+NUM_DECIM 23.456E
+NUM_DECIM 15
+;
+double
+ID A
+=
+NUM_DECIM 23E
++15
+;
+double
+ID B
+=
+NUM_DECIM 23E
++15D
+;
+double
+ID C
+=
+NUM_DECIM 0
+.123e
++15D
+;
+double
+ID D
+=
+NUM_DECIM 0
+.123e
+NUM_DECIM 15
+;
+long
+long
+int
+ID E
+=
+NUM_DECIM 12345678901234567890
+;
+}
+}
