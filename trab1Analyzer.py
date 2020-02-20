@@ -13,16 +13,17 @@ for line in sys.stdin:
 
 
 numerodecimal = "0|[1-9][0-9]*"
-sep = "[\{]|[\}]|[\[]|[\]]|[\(]|[\)]|[\.]|[;]|[,]|[@]|[::]"
+sep = "[\{]|[\}]|[\[]|[\]]|[\(]|[\)]|[\.]|[;]|[,]|[@]|::"
 op = "[<]|[!]|[~]|[\?]|[:]|[->]|==|[=]|[>]|&&|\|\||\+\+|[\+]|[-]|[\*]|[/]|[&]|[|]|[\^]|[%]"
 
-op_complexo=">>>|\+=|-=|\*=|/=|&=|\|=|\^=|%=|<<=|>>=|>>>=|>=|->|<=|!=|\-\-|<<|>>"
+op_complexo=">>>=|\+=|-=|\*=|/=|&=|\|=|\^=|%=|<<=|>>=|>>>|>=|->|<=|!=|\-\-|<<|>>"
 
 teste = RegexpTokenizer(
 r"[_a-zA-Z][_a-zA-Z\d]*"
-rf"|[0-9]?\.[0-9]+[eE]?[\+-]?{numerodecimal}[fFdD]?"
-rf"|\.?[0-9]+[eE]?[\+-]?{numerodecimal}[fFdD]?"
-rf"|{numerodecimal}"
+r"|[-\+]?\d+\.\d+[eE]?[-\+]?\d+[DdFf]?"
+rf"|[-\+]?\d+[eE]?[-\+]?\d+[DdFf]?"
+rf"|\.\d+[eE]?[-\+]?\d+[DdFf]?"
+rf"|[-\+]?{numerodecimal}"
 r'|["].*?["]'
 rf"|{op_complexo}"
 rf"|{sep}"
@@ -42,7 +43,7 @@ reservedKeywords = ["abstract", "continue", "for", "new", "switch",
 "class", "finally", "long", "strictfp", "volatile",
 "const", "float", "native", "super", "while", "_"]
 
-caracfloat = ['.', 'e', 'E', 'f', 'F', 'd', 'D']
+chrf = ['.', 'e', 'E', 'f', 'F', 'd', 'D']
 
 #print (tk)
 
@@ -54,9 +55,9 @@ for tok in tk:
         print (tok)
     elif (primeiro >= 'a' and primeiro <= 'z') or (primeiro >= 'A' and primeiro <= 'Z') or primeiro == '_':
         print ("ID " + tok)
-    elif tok in caracfloat and len(tok) >= 2:
+    elif ((chrf[0] in tok) or (chrf[1] in tok) or (chrf[2] in tok) or (chrf[3] in tok) or (chrf[4] in tok) or (chrf[5] in tok) or (chrf[6] in tok)) and (len(tok) >= 2):
         print ("FLOAT_DECIM " + tok)
-    elif (primeiro >= '0' and primeiro <= '9') and tok not in caracfloat:
+    elif (primeiro >= '0' and primeiro <= '9'):
         print ("NUM_DECIM " + tok)
     else:
         print (tok)

@@ -1,6 +1,6 @@
 public class Puppy {
     public static void main(String []args) {
-        double X=23.456E-789D;
+        double X=-23.456E-789D;
         double Y=23.456E-70;
         double Z=23.456E15;
         double A=23E+15;
